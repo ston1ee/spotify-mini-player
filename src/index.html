@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Mini Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app" class="player-container">
+        <!-- Settings Panel -->
+        <div id="settings-panel" class="settings-panel hidden">
+            <h3>Settings</h3>
+            <div class="setting-group">
+                <label for="opacity-slider">Transparency: <span id="opacity-value">100%</span></label>
+                <input type="range" id="opacity-slider" min="10" max="100" value="100">
+            </div>
+            <div class="setting-group">
+                <label for="width-slider">Width: <span id="width-value">300px</span></label>
+                <input type="range" id="width-slider" min="200" max="600" value="300">
+            </div>
+            <div class="setting-group">
+                <label for="height-slider">Height: <span id="height-value">150px</span></label>
+                <input type="range" id="height-slider" min="100" max="400" value="150">
+            </div>
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="lock-toggle">
+                    Lock Window (click-through)
+                </label>
+            </div>
+            <button id="close-settings">Close</button>
+        </div>
+
+        <!-- Main Player -->
+        <div id="main-player" class="main-player">
+            <!-- Header with drag handle and buttons -->
+            <div class="header draggable">
+                <div class="drag-handle"></div>
+                <div class="header-buttons">
+                    <button id="settings-btn" class="header-btn" title="Settings">⚙️</button>
+                    <button id="lyrics-btn" class="header-btn hidden" title="Show Lyrics">📝</button>
+                    <button id="minimize-btn" class="header-btn" title="Minimize">➖</button>
+                </div>
+            </div>
+
+            <!-- Not authenticated screen -->
+            <div id="not-auth" class="auth-screen">
+                <p>Connect to Spotify</p>
+                <button id="auth-btn">Login with Spotify</button>
+            </div>
+
+            <!-- Player content -->
+            <div id="player-content" class="player-content hidden">
+                <div id="track-info" class="track-info">
+                    <img id="album-art" src="" alt="Album Art" class="album-art">
+                    <div class="track-details">
+                        <div id="track-name" class="track-name">No track playing</div>
+                        <div id="artist-name" class="artist-name">-</div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="prev-btn" class="control-btn">⏮️</button>
+                    <button id="play-pause-btn" class="control-btn play-btn">▶️</button>
+                    <button id="next-btn" class="control-btn">⏭️</button>
+                </div>
+
+                <div class="progress-container">
+                    <span id="current-time" class="time">0:00</span>
+                    <div class="progress-bar">
+                        <div id="progress" class="progress"></div>
+                    </div>
+                    <span id="total-time" class="time">0:00</span>
+                </div>
+
+                <!-- Queue info -->
+                <div id="queue-info" class="queue-info">
+                    <span class="queue-label">Next: </span>
+                    <span id="next-track">-</span>
+                </div>
+            </div>
+
+            <!-- Lyrics view -->
+            <div id="lyrics-view" class="lyrics-view hidden">
+                <button id="back-to-player" class="back-btn">← Back</button>
+                <div id="lyrics-content" class="lyrics-content">
+                    <p>Lyrics not available</p>
+                </div>
+            </div>
+
+            <!-- Loading indicator -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
